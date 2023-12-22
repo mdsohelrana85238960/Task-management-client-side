@@ -7,7 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import useAxiosPublic from "../Hook/useAxiosPublic";
-import axios from "axios";
+
 
 
 const TasksManagement = () => {
@@ -61,73 +61,18 @@ const {user} = useAuth()
           </div>
 
           <div className="flex-1 bg-slate-300 rounded-xl">
-          <h1 className="text-3xl">In Progress</h1>
-            dddddddddddd
+          <h1 className="text-3xl">Ongoing</h1>
+          
           </div>
 
           <div className="flex-1 bg-slate-300 rounded-xl">
           <h1 className="text-3xl">Completed</h1>
-            dddddddddddd
+          
           </div>
             
-          
-
-   
-         
-            
-            {/* <section className="mt-4">
-                
-            <div className="overflow-x-auto">
-  <table className="table table-zebra w-full">
-   
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Priority</th>
-        <th>Deadline</th>
-        <th>Action</th>
-        <th>Update</th>
-        <th>Delete</th>
-       
-        
-      </tr>
-    </thead>
-    <tbody>
-    
-    {
-        tasks.map((task, index) =>   <tr key={task._id}>
-            <th>{index +1} </th>
-           
-            
-            <td> {task.title} </td>
-            <td> {task.description} </td>
-            <td> {task.priority} </td>
-            <td> {task.deadline} </td>
-            <td> actionaaa </td>
-            
-            <td> <Link to= {`/dashboard/update/${task._id}`} >  <button  className="btn text-red-600 btn-ghost btn-lg"> <FaEdit></FaEdit> </button> </Link> </td>
-            <td > <button  onClick={() => handleDeleteTasks(task._id)} className="btn text-red-600 btn-ghost btn-lg"><MdDelete /> </button></td>
-           
-            
-            
-           
-          </tr>
-          )
-    }
-
-    
-     
-    </tbody>
-  </table>
-</div>
-
-
-            </section> */}
-
         </div>
     );
 };
 
 export default TasksManagement;
+
