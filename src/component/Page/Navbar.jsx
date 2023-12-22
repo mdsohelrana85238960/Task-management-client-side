@@ -32,7 +32,7 @@ const Navbar = () => {
               }
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <a className="btn btn-ghost text-xl w-48"> <img src="https://logos.flamingtext.com/Word-Logos/management-design-stripes-name.gif" alt="" /> </a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
