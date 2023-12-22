@@ -37,8 +37,8 @@ const Navbar = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
     <li><Link className="justify-center text-xl" to='/'> Home </Link></li>
-        <li><a className="justify-center text-xl" href="#tasks">Tasks</a></li>
-        <li><a className="justify-center text-xl" href="#calendar">Calendar</a></li>
+        <li><a className="justify-center text-xl" href="#reports">Reports</a></li>
+        <li><a className="justify-center text-xl" href="#calender">Calendar</a></li>
         {
                     user ? <> </> : <li className="justify-center text-xl"> <Link to='/register'> Register </Link> </li>
                 }
