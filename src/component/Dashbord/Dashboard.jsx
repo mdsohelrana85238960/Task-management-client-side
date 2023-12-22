@@ -1,10 +1,20 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
+import swal from "sweetalert";
 
 
 const Dashboard = () => {
-    const {user} = useAuth();
+    const {user,logOut} = useAuth();
     console.log(user)
+    
+
+    const handleSignOut = () =>{
+        logOut()
+        .then(result => {
+            console.log(result)
+            swal("Good job!", "Logout Successfully!", "success");
+        })
+      }
     return (
         <div className="flex">
             <div className="w-72 text-white min-h-screen bg-[#3d383d] ">
@@ -19,10 +29,16 @@ const Dashboard = () => {
         <hr/>
 
           <div className="p-4 font-medium list-none ">
-                <li className="py-2">  <NavLink to='/dashboard/addTasks'>Add Tasks</NavLink></li>
-                <li className="1">  <NavLink to='/dashboard/management'>Task Management Dashboard</NavLink></li>
-                <li className="py-2">  <NavLink to='/'> Home </NavLink></li>
+            <h1 className="btn btn-ghost w-full bg-[#5B81A3]">  <NavLink to='/dashboard/addTasks'>Add Tasks</NavLink> </h1>
+            <button className="btn  w-full btn-ghost my-4 bg-[#5B81A3] ">  <NavLink to='/dashboard/management'>Task Management Dashboard</NavLink> </button>
+             <hr className="mb-4" />
+             
+            <button className="btn mb-4 w-full btn-ghost bg-[#5B81A3]">  <NavLink to='/'> Home </NavLink> </button>
+            <button onClick={handleSignOut} className="btn  w-full btn-ghost bg-[#5B81A3]">  <NavLink > Logout </NavLink> </button>
+        
+            
           </div>
+         
           
           
 

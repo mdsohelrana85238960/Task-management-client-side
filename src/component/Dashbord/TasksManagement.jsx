@@ -13,14 +13,14 @@ import axios from "axios";
 const TasksManagement = () => {
     const AxiosPublic = useAxiosPublic()
 const {user} = useAuth()
-    const {data: tasks = [], refetch} = useQuery({
-        queryKey:['tasks'],
+    const {data: userTasks = [], refetch} = useQuery({
+        queryKey:['tasks', user?.email],
         queryFn: async () =>{
-            const res = await AxiosPublic.get(`/tasks`);
+            const res = await AxiosPublic.get(`/tasks/${user?.email}`);
             return res.data;
         }
     })
-    console.log(tasks)
+    console.log(userTasks)
 
     const handleDeleteTasks = (task) =>{
         console.log(task)
@@ -40,41 +40,24 @@ const {user} = useAuth()
           <div className="flex-1 bg-slate-300 rounded-xl">
           <h1 className="text-3xl">To do list</h1>
           {
-                tasks.map(task =>  <div key={task._id} draggable className="card m-2 w-96 bg-blue-300 text-black ">
+                userTasks?.map(task =>  <div key={task?._id} draggable className="card m-2 w-96 bg-blue-300 text-black ">
                     
                 <div className="card-body">
-                  <h2 className="card-title">{task.title}</h2>
-                  <p>{task.description}</p>
+                  <h2 className="card-title">{task?.title}</h2>
+                  <p>{task?.description}</p>
                   <div className="flex justify-between">
-                    <h1> {task.deadline} </h1>
-                    <h1> {task.priority} </h1>
+                    <h1> {task?.deadline} </h1>
+                    <h1> {task?.priority} </h1>
                   </div>
                   <div className="card-actions  justify-end">
-                  <button  onClick={() => handleDeleteTasks(task._id)} className="btn   "><MdDelete /> </button>
-                  <Link to= {`/dashboard/update/${task._id}`} >  <button  className="btn  "> <FaEdit></FaEdit> </button> </Link>
+                  <button  onClick={() => handleDeleteTasks(task?._id)} className="btn   "><MdDelete /> </button>
+                  <Link to= {`/dashboard/update/${task?._id}`} >  <button  className="btn  "> <FaEdit></FaEdit> </button> </Link>
                   </div>
                 </div>
               </div> )
               
             }
-          {
-                tasks.map(task =>  <div key={task._id} draggable className="card m-2 w-96 bg-blue-300 text-black ">
-                    
-                <div className="card-body">
-                  <h2 className="card-title">{task.title}</h2>
-                  <p>{task.description}</p>
-                  <div className="flex justify-between">
-                    <h1> {task.deadline} </h1>
-                    <h1> {task.priority} </h1>
-                  </div>
-                  <div className="card-actions  justify-end">
-                  <button  onClick={() => handleDeleteTasks(task._id)} className="btn   "><MdDelete /> </button>
-                  <Link to= {`/dashboard/update/${task._id}`} >  <button  className="btn  "> <FaEdit></FaEdit> </button> </Link>
-                  </div>
-                </div>
-              </div> )
-              
-            }
+         
           </div>
 
           <div className="flex-1 bg-slate-300 rounded-xl">

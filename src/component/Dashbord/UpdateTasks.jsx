@@ -26,7 +26,7 @@ const UpdateTasks = () => {
 
 
     const handleUpdateTasks = (e) =>{
-    
+      e.preventDefault()
         const form = e.target
         const title = form.title.value;
         const description = form.description.value;
@@ -36,7 +36,17 @@ const UpdateTasks = () => {
         const tasks = {title,description,priority}
         console.log(tasks)
 
-       
+        AxiosPublic.put(`/tasks/${id}`, tasks)
+        .then((response) => {
+    console.log(response.data); 
+    if (response.data.modifiedCount > 0) {
+      swal("Product updated successfully");
+    }
+  })
+  .catch((error) => {
+    console.error('Error updating product:', error);
+   
+  });
 
     }
 
@@ -50,8 +60,8 @@ const UpdateTasks = () => {
         <div className="my-20">
 
 
-            <h1 className="text-center text-5xl font-bold underline "> Add Tasks</h1>
-           <form onClick={handleUpdateTasks} >
+            <h1 className="text-center text-5xl font-bold underline "> Update Tasks</h1>
+           <form onSubmit={handleUpdateTasks} >
             <div className="card-body grid md:grid-cols-2 gap-8">
             
             <div className="form-control">
@@ -61,7 +71,7 @@ const UpdateTasks = () => {
               <input
                 type="text"
                 name="title" 
-                defaultValue= "title"
+                defaultValue= {products.title}
                 placeholder="Title"
                 className="input input-bordered"
                 required
@@ -73,7 +83,7 @@ const UpdateTasks = () => {
       <label className="label">
         <span className="label-text">Priority</span>
       </label>
-      <select name="priority"  defaultValue= "priority" className="select select-bordered" required>
+      <select name="priority"  defaultValue=  {products.priority} className="select select-bordered" required>
         <option value="" disabled selected>Select priority</option>
         <option value="low">Low</option>
         <option value="medium">moderate</option>
@@ -88,7 +98,7 @@ const UpdateTasks = () => {
               <input
                 type="text"
                 name="description" 
-                defaultValue= "description"
+                defaultValue=  {products.description}
                 placeholder="Description"
                 className="input input-bordered"
                 required
